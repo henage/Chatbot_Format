@@ -1,6 +1,7 @@
-<div style="font-size: 4em">First Page</div>
+<div style="font-size: 4em; cursor: pointer;" onclick="document.getElementById('chatbot').contentWindow.postMessage('Hello there!', 'https://example.com');">First Page</div>
 <iframe 
+  id="chatbot"
   style="width: 100%; height: 100%"  
   allow="autoplay; camera; display-capture; encrypted-media; fullscreen; microphone; midi; payment; picture-in-picture; speaker;" 
-  src="https://localhost:8080/room/53?secret=PoC"
+  src="http://localhost:8080/room/53?secret=PoC"
 ></iframe>
