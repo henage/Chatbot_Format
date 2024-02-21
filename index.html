@@ -17,6 +17,7 @@
     }
   }
   function getMessageFromIframe({ data, origin }) {
+    console.log({ data, origin })
     const el = document.getElementById('main-text');
     el.textContent = data;
   }
