@@ -1,4 +1,6 @@
-<div style="font-size: 4em; cursor: pointer;" 
+<div 
+  id="main-text"
+  style="font-size: 4em; cursor: pointer;" 
   onclick="postMessageToIframe()"
 >First Page</div>
 <iframe 
@@ -14,4 +16,9 @@
       el.contentWindow.postMessage('Hello there!', 'http://localhost:8080');
     }
   }
+  function getMessageFromIframe({ data, origin }) {
+    const el = document.getElementById('main-text');
+    el.textContent = data;
+  }
+  window.addEventListener('message', )
 </script>
