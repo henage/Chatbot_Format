@@ -32,6 +32,7 @@
         el.style.height = height
       } else if(method=="changeTime") {
         const { time } = params
+        console.log({ time })
         const el = document.getElementById('main-text');
         el.textContent = time;
       }
