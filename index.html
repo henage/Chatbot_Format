@@ -1,8 +1,5 @@
 <div style="font-size: 4em; cursor: pointer;" 
-  onclick="()=>{
-    const el = document.getElementById('chatbot')
-    el.contentWindow.postMessage('Hello there!', 'localhost:8080')
-  }"
+  onclick="postMessageToIframe()"
 >First Page</div>
 <iframe 
   id="chatbot"
@@ -10,3 +7,11 @@
   allow="autoplay; camera; display-capture; encrypted-media; fullscreen; microphone; midi; payment; picture-in-picture; speaker;" 
   src="http://localhost:8080/room/53?secret=PoC"
 ></iframe>
+<script>
+  function postMessageToIframe() {
+    const el = document.getElementById('chatbot');
+    if (el && el.contentWindow) {
+      el.contentWindow.postMessage('Hello there!', 'http://localhost:8080');
+    }
+  }
+</script>
