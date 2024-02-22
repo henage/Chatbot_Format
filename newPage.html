@@ -10,6 +10,13 @@
       margin: 40px;
       font-size: 3em;
     }
+    #chatbot {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      right: 6px;
+      bottom: 6px;
+    }
   </style>
   </head>
   <body>
@@ -43,7 +50,6 @@
 
     <iframe 
       id="chatbot"
-      style="width: 100%; height: 100%"  
       allow="autoplay; camera; display-capture; encrypted-media; fullscreen; microphone; midi; payment; picture-in-picture; speaker;" 
       src="http://localhost:8080/room/53?secret=PoC"
     ></iframe>
