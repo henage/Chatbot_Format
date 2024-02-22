@@ -67,11 +67,11 @@
             const el = document.getElementById('chatbot');
             el.style.width = width
             el.style.height = height
-          } else if(method=="changeTime") {
-            const { time } = params
-            console.log({ time })
+          } else if(method=="changeText") {
+            const { text } = params
+            console.log({ text })
             const el = document.getElementById('main-text');
-            el.textContent = time;
+            el.textContent = text;
           }
         }
         
