@@ -1,0 +1,41 @@
+
+<iframe 
+    id="embedded-gamify-app"
+    allow="autoplay; camera; display-capture; encrypted-media; fullscreen; microphone; midi; payment; picture-in-picture; speaker;" 
+    src="https://gamify.dev/chatbot?secret=alpha"
+></iframe>
+<script>
+    function postMessageToIframe(data) {
+        const el = document.getElementById('embedded-gamify-app');
+        if (el && el.contentWindow) {
+            el.contentWindow.postMessage(data, 'https://henage.github.io');
+        }
+    }
+    function getMessageFromIframe({ data, origin }) {
+        console.log({ data, origin })
+        if(typeof data == "object") {
+            const { method, params } = data;
+            if(method=="customMethodHere") {
+                const { firstParam } = params
+                console.log({ text })
+                const el = document.getElementById('main-text');
+                el.textContent = text;
+            } else if(method=="redirect") {
+                    const { location } = params
+                    window.location.href = location
+            }  else if(method=="resizeIframe") {
+                const { width, height } = params
+                const el = document.getElementById('chatbot');
+                el.style.width = width
+                el.style.height = height
+            }
+        }
+    
+    }
+    window.addEventListener('message', getMessageFromIframe)
+</script>
+<style>
+    #embedded-gamify-app {
+        border: none;
+    }
+</style>
