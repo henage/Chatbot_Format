@@ -16,16 +16,14 @@
         if(typeof data == "object") {
             const { method, params } = data;
             if(method=="customMethodHere") {
-                const { firstParam } = params
-                console.log({ text })
-                const el = document.getElementById('main-text');
-                el.textContent = text;
+                const { firstParam, anotherParam } = params
+                console.log({ firstParam, anotherParam })
             } else if(method=="redirect") {
                     const { location } = params
                     window.location.href = location
-            }  else if(method=="resizeIframe") {
+            }  else if(method=="resize") {
                 const { width, height } = params
-                const el = document.getElementById('chatbot');
+                const el = document.getElementById('embedded-gamify-app');
                 el.style.width = width
                 el.style.height = height
             }
