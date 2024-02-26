@@ -53,42 +53,43 @@
     <section id="Z"><h2>Z</h2><p>Zucchini</p></section>
 
     <iframe 
-      id="chatbot"
-      allow="autoplay; camera; display-capture; encrypted-media; fullscreen; microphone; midi; payment; picture-in-picture; speaker;" 
-      src="http://localhost:8080/room/53?secret=PoC"
+        id="embedded-gamify-app"
+        allow="autoplay; camera; display-capture; encrypted-media; fullscreen; microphone; midi; payment; picture-in-picture; speaker;" 
+        src="http://localhost:8080/chatbot?secret=alpha"
     ></iframe>
     <script>
-      function postMessageToIframe() {
-        const el = document.getElementById('chatbot');
-        if (el && el.contentWindow) {
-          el.contentWindow.postMessage('Hello there!', 'http://localhost:8080');
+        function postMessageToIframe(data) {
+            const el = document.getElementById('embedded-gamify-app');
+            if (el && el.contentWindow) {
+                el.contentWindow.postMessage(data, 'https://henage.github.io');
+            }
         }
-      }
-      function getMessageFromIframe({ data, origin }) {
-        console.log({ data, origin })
-        if(typeof data == "object") {
-          const { method, params } = data;
-          if(!method) {
-            
-          } else if(method=="redirect") {
-            const { location } = params
-            window.location.href = location
-          } else if(method=="resizeIframe") {
-            const { width, height } = params
-            const el = document.getElementById('chatbot');
-            el.style.width = width
-            el.style.height = height
-          } else if(method=="changeTime") {
-            const { time } = params
-            console.log({ time })
-            const el = document.getElementById('main-text');
-            el.textContent = time;
-          }
-        }
+        function getMessageFromIframe({ data, origin }) {
+            console.log({ data, origin })
+            if(typeof data == "object") {
+                const { method, params } = data;
+                if(method=="customMethodHere") {
+                    const { firstParam, anotherParam } = params
+                    console.log({ firstParam, anotherParam })
+                } else if(method=="redirect") {
+                        const { location } = params
+                        window.location.href = location
+                }  else if(method=="resize") {
+                    const { width, height } = params
+                    const el = document.getElementById('embedded-gamify-app');
+                    el.style.width = width
+                    el.style.height = height
+                }
+            }
         
-      }
-      window.addEventListener('message', getMessageFromIframe)
+        }
+        window.addEventListener('message', getMessageFromIframe)
     </script>
+    <style>
+        #embedded-gamify-app {
+            border: none;
+        }
+    </style>
   
   </body>
 </html>
