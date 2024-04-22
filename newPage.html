@@ -89,6 +89,20 @@
     
     }
     window.addEventListener('message', getMessageFromIframe)
+  
+    const widthLocal = localStorage.getItem('width');
+    const heightLocal = localStorage.getItem('height');
+    console.log({ widthLocal , heightLocal });
+    if(widthLocal && parseInt(widthLocal )>72) {
+        getMessageFromIframe({ data: { method:"resize", params: { width: widthLocal , height: heightLocal  } }, origin: "on load" })
+        iframe.addEventListener('load', () => {
+            console.log("loaded!")
+            setTimeout(()=>postMessageToIframe("PARENT MESSAGE: EXPANDED"), 2000)
+        });
+        //postMessageToIframe("PARENT MESSAGE: EXPANDED")
+        
+    }
+  
 </script>
 <style>
     #embedded-gamify-app {
